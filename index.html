@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vanilla JS Routing</title>
+</head>
+<body>
+
+    <ul>
+        <li><a href="#" onclick="loadPage('home.html')">Ana Sayfa</a></li>
+        <li><a href="#" onclick="loadPage('about.html')">Hakkımızda</a></li>
+        <li><a href="#" onclick="loadPage('contact.html')">İletişim</a></li>
+    </ul>
+
+    <div id="content">
+        <!-- İçerik burada güncellenecek -->
+    </div>
+
+    <script>
+        // Sayfa yükleme fonksiyonu
+        function loadPage(page) {
+            // XMLHttpRequest kullanarak sayfa içeriğini al
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    // Başarılı yanıt alındığında içeriği güncelle
+                    document.getElementById('content').innerHTML = xhr.responseText;
+                }
+            };
+            xhr.open('GET', page, true);
+            xhr.send();
+        }
+    </script>
+
+</body>
+</html>
